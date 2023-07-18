@@ -1,0 +1,33 @@
+/* .notification {
+    text-align: center;
+    margin-top: 15px;
+    color: rgb(255, 0, 0);
+  } */
+
+
+  .notification {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #333;
+  } 
+  .notification {
+    display: inline-block;
+    animation: slideLeft 1.5s forwards;
+    opacity: 0;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  @keyframes slideLeft {
+    from {
+      opacity: 0;
+      transform: translateX(200px);
+    } 
+    to {
+      opacity: 1;
+      transform: translateX(420%);
+    }
+  }
+  
