@@ -1,10 +1,11 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 import style from './FeedbackOptions.module.css';
 
-export const FeedBackOptions = ({ options, onLeaveFeedback }) => {
+const FeedBackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div>
-      {options.map(option => {
+      {options.map((option) => {
         return (
           <button
             key={option}
@@ -26,4 +27,4 @@ FeedBackOptions.propTypes = {
   onLeaveFeedback: PropTypes.func.isRequired,
 };
 
-
+export default FeedBackOptions;

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Statistics } from './Statistics/Statistics';
-import { FeedBackOptions } from './FeedbackOptions/FeedbackOptions';
-import { Section } from './Section/Section';
-import { Notification } from './Notification/Notification';
+import Statistics from './Statistics/Statistics';
+import FeedBackOptions from './FeedbackOptions/FeedbackOptions';
+import Section from './Section/Section';
+import Notification from './Notification/Notification';
 
 const App = () => {
   const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
 
-  const handleLeaveFeedback = option => {
-    setFeedback(prevFeedback => ({
+  const handleLeaveFeedback = (option) => {
+    setFeedback((prevFeedback) => ({
       ...prevFeedback,
       [option]: prevFeedback[option] + 1,
     }));
