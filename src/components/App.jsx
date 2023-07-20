@@ -5,42 +5,50 @@ import Section from './Section/Section';
 import Notification from './Notification/Notification';
 
 const App = () => {
-  const [feedback, setFeedback] = useState({ good: 0, neutral: 0, bad: 0 });
+  const [goodFeedback, setGoodFeedback] = useState(0);
+  const [neutralFeedback, setNeutralFeedback] = useState(0);
+  const [badFeedback, setBadFeedback] = useState(0);
 
   const handleLeaveFeedback = (option) => {
-    setFeedback((prevFeedback) => ({
-      ...prevFeedback,
-      [option]: prevFeedback[option] + 1,
-    }));
+    switch (option) {
+      case 'good':
+        setGoodFeedback((prevGoodFeedback) => prevGoodFeedback + 1);
+        break;
+      case 'neutral':
+        setNeutralFeedback((prevNeutralFeedback) => prevNeutralFeedback + 1);
+        break;
+      case 'bad':
+        setBadFeedback((prevBadFeedback) => prevBadFeedback + 1);
+        break;
+      default:
+        break;
+    }
   };
 
   const countTotalFeedback = () => {
-    const { good, neutral, bad } = feedback;
-    return good + neutral + bad;
+    return goodFeedback + neutralFeedback + badFeedback;
   };
 
   const countPositiveFeedbackPercentage = () => {
-    const { good, neutral, bad } = feedback;
-    const total = good + neutral + bad;
-    return Math.round((good * 100) / total) || 0;
+    const total = goodFeedback + neutralFeedback + badFeedback;
+    return Math.round((goodFeedback * 100) / total) || 0;
   };
 
   const total = countTotalFeedback();
   const positiveFeedback = countPositiveFeedbackPercentage();
-  const options = Object.keys(feedback);
 
   return (
     <>
       <Section title="Please leave feedback">
-        <FeedBackOptions options={options} onLeaveFeedback={handleLeaveFeedback} />
+        <FeedBackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={handleLeaveFeedback} />
       </Section>
 
       {total > 0 ? (
         <Section title="Statistics">
           <Statistics
-            good={feedback.good}
-            neutral={feedback.neutral}
-            bad={feedback.bad}
+            good={goodFeedback}
+            neutral={neutralFeedback}
+            bad={badFeedback}
             total={total}
             positivePercentage={positiveFeedback}
           />
